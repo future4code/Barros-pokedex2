@@ -71,6 +71,10 @@ main {
     gap: 50px;
 }
 
+.images div img {
+    width: 150px;
+}
+
 .stats {
     display: flex;
     flex-direction: column;

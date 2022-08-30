@@ -12,7 +12,7 @@ export function Card(props) {
       </div>
       <div class="button">
         <button>Adicionar</button>
-        <button>Ver Detalhes</button>
+        <button onClick={props.onClick}>Ver Detalhes</button>
       </div>
     </div>
   );

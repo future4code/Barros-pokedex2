@@ -1,15 +1,29 @@
 import "./style.css";
+import { useNavigate } from "react-router-dom";
+import { goBack, goToPokedex } from "../../Routes/Cordinator";
 
 export function Stats() {
+
+    const navigate = useNavigate()
 
 
     return (
       <>
         <header>
-          <div class="wrapper">
+          <div className="wrapper">
             <div>
-              <button class="button-header">Voltar</button>
-              <button class="button-pokedex">Ir para pokedex</button>
+              <button
+                className="button-header"
+                onClick={() => goBack(navigate)}
+              >
+                Voltar
+              </button>
+              <button
+                className="button-pokedex"
+                onClick={() => goToPokedex(navigate)}
+              >
+                Ir para pokedex
+              </button>
             </div>
             <div>
               <h1>Pokemon Stats</h1>
@@ -18,8 +32,8 @@ export function Stats() {
         </header>
 
         <main>
-          <div class="inner">
-            <section class="images">
+          <div className="inner">
+            <section className="images">
               <div>
                 <img
                   src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
@@ -33,7 +47,7 @@ export function Stats() {
                 />
               </div>
             </section>
-            <section class="stats">
+            <section className="stats">
               <p>HP:</p>
               <p>Attack:</p>
               <p>Defense:</p>
@@ -41,12 +55,12 @@ export function Stats() {
               <p>Special-defense:</p>
               <p>Speed</p>
             </section>
-            <section class="detail">
-              <div class="type">
+            <section className="detail">
+              <div className="type">
                 <p>type 1</p>
                 <p>type 2</p>
               </div>
-              <div class="move">
+              <div className="move">
                 <h5>Moves</h5>
                 <ul>
                   <li>move name 1</li>
