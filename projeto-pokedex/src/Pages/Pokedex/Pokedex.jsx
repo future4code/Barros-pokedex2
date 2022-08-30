@@ -14,7 +14,7 @@ export function Pokedex() {
               <button className="button-header" onClick={() => goBack(navigate)}>Voltar</button>
             </div>
             <div>
-              <h1>Lista de Pokemons</h1>
+              <h1>Pokedex</h1>
             </div>
           </div>
         </header>
