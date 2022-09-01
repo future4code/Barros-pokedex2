@@ -4,19 +4,44 @@ import "./style.css";
 import { goToPokedex, goToStats } from "../../Routes/Cordinator";
 import UseRequestData from "../../Components/Hooks/UseRequestData";
 import { URL } from "../../Constants/BASE_URL";
+import { useState, useEffect } from "react";
 
 export function Home() {
+  const navigate = useNavigate();
+  const [id, setId] = useState("");
+  const [dataPoke] = UseRequestData(`${URL}`);
+  // const [ allPokes, setAllPokes ] = useState([])
+  // const [ dataSinglePoke ] = UseRequestData(`${URL}1`)
 
-  const navigate = useNavigate()
-  const [dataPoke] = UseRequestData(`${URL}`)
+  let allPokes = [];
 
-  console.log(dataPoke)
+  const getPokemons = () => {
+    for (let id = 1; id < 21; id++) {
+      const [data] = UseRequestData(`${URL}` + id);
+
+      console.log(data);
+      console.log(data);
+
+      allPokes.push({ data });
+
+      console.log(allPokes);
+    }
+    return allPokes;
+  };
+
+  getPokemons();
+
   return (
     <>
       <header>
         <div className="wrapper">
           <div>
-            <button className="button-header" onClick={() => goToPokedex(navigate)}>Ir para Pokedex</button>
+            <button
+              className="button-header"
+              onClick={() => goToPokedex(navigate)}
+            >
+              Ir para Pokedex
+            </button>
           </div>
           <div>
             <h1>Lista de Pokemons</h1>
@@ -25,33 +50,18 @@ export function Home() {
       </header>
 
       <main>
-
-        {dataPoke&&dataPoke.results&&dataPoke.results.map((pokemon)=>{
-          return(
-            <Card
-            image={pokemon.url}
-            alt={pokemon.name}
-            onClick={() => goToStats(navigate)}
-            />
-          )
-        })}
-
-        {/*
         <div className="container">
-          <Card image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png" onClick={() => goToStats(navigate)} />
-          <Card image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png" onClick={() => goToStats(navigate)} />
-          <Card image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png" onClick={() => goToStats(navigate)} />
-          <Card image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png" onClick={() => goToStats(navigate)} />
-          <Card image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png" onClick={() => goToStats(navigate)} />
-          <Card image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png" onClick={() => goToStats(navigate)} />
-          <Card image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png" onClick={() => goToStats(navigate)} />
-          <Card image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png" onClick={() => goToStats(navigate)} />
-          <Card image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png" onClick={() => goToStats(navigate)} />
-          <Card image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png" onClick={() => goToStats(navigate)} />
-          <Card image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png" onClick={() => goToStats(navigate)} />
-          <Card image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png" onClick={() => goToStats(navigate)} />
+          {allPokes &&
+            allPokes.map((pokemon) => {
+              return (
+                <Card
+                  image={pokemon.data && pokemon.data.sprites.front_default}
+                  alt={pokemon.data && pokemon.data.name}
+                  onClick={() => goToStats(navigate)}
+                />
+              );
+            })}
         </div>
-        */}
       </main>
     </>
   );
