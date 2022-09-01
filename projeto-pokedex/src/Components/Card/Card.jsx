@@ -7,7 +7,7 @@ export function Card(props) {
       <div>
         <img
           src={props.image}
-          alt="pokemon"
+          alt={props.alt}
         />
       </div>
       <div class="button">
