@@ -13,6 +13,10 @@
     width: 100px;
 }
 
+.card img{
+    height: 100px;
+}
+
 .button {
     display: flex;
     justify-content: space-between;
