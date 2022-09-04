@@ -1,5 +1,5 @@
 import { Card } from "../../Components/Card/Card";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 import { goToPokedex, goToStats } from "../../Routes/Cordinator";
 import UseRequestData from "../../Components/Hooks/UseRequestData";
@@ -12,6 +12,7 @@ export function Home() {
   const [dataPoke] = UseRequestData(`${URL}`);
   // const [ allPokes, setAllPokes ] = useState([])
   // const [ dataSinglePoke ] = UseRequestData(`${URL}1`)
+  const pokeId = useParams();
 
   let allPokes = [];
 
@@ -58,6 +59,7 @@ export function Home() {
                   image={pokemon.data && pokemon.data.sprites.front_default}
                   alt={pokemon.data && pokemon.data.name}
                   onClick={() => goToStats(navigate)}
+                  pokeId={pokemon.data && pokemon.data.id}
                 />
               );
             })}

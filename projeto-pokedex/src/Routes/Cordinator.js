@@ -1,3 +1,4 @@
+
 export const goToStats = (navigate) => {
   navigate("/stats");
 };
