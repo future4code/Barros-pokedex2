@@ -11,7 +11,7 @@ export function Router() {
             <Routes>
                 <Route index element = { <Home /> } />
 
-                <Route path = "stats" element = { <Stats /> } />
+                <Route path = "stats/:pokeId" element = { <Stats /> } />
 
                 <Route path = "pokedex" element = { <Pokedex /> } />
 

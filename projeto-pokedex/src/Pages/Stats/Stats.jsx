@@ -1,12 +1,52 @@
 import "./style.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { goBack, goToPokedex } from "../../Routes/Cordinator";
+import UseRequestData from "../../Components/Hooks/UseRequestData";
+import { URL } from "../../Constants/BASE_URL";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export function Stats() {
 
     const navigate = useNavigate()
+    const {pokeId} = useParams();
+    console.log("pokeId",pokeId)
+    //const [dataDetails] = UseRequestData(`${URL}/${params.pokeId}`)
+    const [pokemonDetails, setPokemonDetails] = useState()
+
+    const getPokeDetails = () =>{
+      axios
+          .get(`${URL}${pokeId}`,{
+          })
+          .then((response)=>{setPokemonDetails(response.data)})
+          .catch((erro)=>{console.log(erro)})
+  }
+
+  useEffect(()=>{
+      getPokeDetails()
+  },[`${URL}${pokeId}`])
+
+  console.log("pokemonDetails",pokemonDetails)
 
 
+    //console.log(dataDetails)
+/*
+    useEffect(() => {
+      axios
+      .get(`https://pokeapi.co/api/v2/pokemon/${params.pokeId}/`)
+      .then((response) => {
+          setPokemonDetails(response.data);
+          
+      })
+      .catch((error) => {
+          console.log(error);
+          
+      });
+    }, [ `https://pokeapi.co/api/v2/pokemon/${params.pokeId}/`]);
+
+    */
+
+    
     return (
       <>
         <header>
@@ -30,7 +70,7 @@ export function Stats() {
             </div>
           </div>
         </header>
-
+        
         <main>
           <div className="inner">
             <section className="images">
@@ -63,7 +103,7 @@ export function Stats() {
               <div className="move">
                 <h5>Moves</h5>
                 <ul>
-                  <li>move name 1</li>
+                
                   <li>move name 2</li>
                   <li>move name 3</li>
                 </ul>
