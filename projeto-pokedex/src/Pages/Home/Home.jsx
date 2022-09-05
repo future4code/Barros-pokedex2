@@ -9,10 +9,10 @@ import { Context } from "../../context/Context";
 
 export function Home() {
   const navigate = useNavigate();
-  const [id, setId] = useState("");
-  const [dataPoke] = UseRequestData(`${URL}`);
+  // const [id, setId] = useState("");
+  // const [dataPoke] = UseRequestData(`${URL}`);
   const { pokedex, setPokedex } = useContext(Context);
-  const pokeId = useParams();
+  // const pokeId = useParams();
 
   
   const addOnClick = (id) => {
