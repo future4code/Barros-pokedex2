@@ -1,14 +1,18 @@
-import { Home } from "./Pages/Home/Home";
-import { Stats } from "./Pages/Stats/Stats";
+import { useState } from "react";
 import { Router } from "./Routes/Router";
+import { Context } from "./context/Context";
 
 
 
 function App() {
 
+  const [ pokedex, setPokedex ] = useState([])
+
   return (
     <div className="App">
-         <Router />
+      <Context.Provider value={{ pokedex, setPokedex}}>
+        <Router />
+      </Context.Provider>
     </div>
   );
 }

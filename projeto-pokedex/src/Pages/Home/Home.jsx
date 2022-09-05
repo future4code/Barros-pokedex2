@@ -4,28 +4,39 @@ import "./style.css";
 import { goToPokedex, goToStats } from "../../Routes/Cordinator";
 import UseRequestData from "../../Components/Hooks/UseRequestData";
 import { URL } from "../../Constants/BASE_URL";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Context } from "../../context/Context";
 
 export function Home() {
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [dataPoke] = UseRequestData(`${URL}`);
-  // const [ allPokes, setAllPokes ] = useState([])
-  // const [ dataSinglePoke ] = UseRequestData(`${URL}1`)
+  const { pokedex, setPokedex } = useContext(Context);
   const pokeId = useParams();
 
+  
+  const addOnClick = (id) => {
+    const newPoke = [...pokedex]
+    newPoke.push(id);
+    setPokedex(newPoke);
+  }
+
+  console.log(pokedex);
+  
+  
+  
   let allPokes = [];
 
   const getPokemons = () => {
     for (let id = 1; id < 21; id++) {
       const [data] = UseRequestData(`${URL}` + id);
 
-      console.log(data);
-      console.log(data);
+      // console.log(data);
+      // console.log(data);
 
       allPokes.push({ data });
 
-      console.log(allPokes);
+      // console.log(allPokes);
     }
     return allPokes;
   };
@@ -58,6 +69,8 @@ export function Home() {
                 <Card
                   image={pokemon.data && pokemon.data.sprites.front_default}
                   alt={pokemon.data && pokemon.data.name}
+                  buttonName="Adicionar"
+                  addPoke={() => addOnClick(pokemon.data.id)}
                   onClick={() => goToStats(navigate)}
                   pokeId={pokemon.data && pokemon.data.id}
                 />
