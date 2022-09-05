@@ -69,8 +69,9 @@ export function Home() {
                 <Card
                   image={pokemon.data && pokemon.data.sprites.front_default}
                   alt={pokemon.data && pokemon.data.name}
+                  name={pokemon.data && pokemon.data.name}
                   buttonName="Adicionar"
-                  addPoke={() => addOnClick(pokemon.data.id)}
+                  addRmPoke={() => addOnClick(pokemon.data.id)}
                   onClick={() => goToStats(navigate)}
                   pokeId={pokemon.data && pokemon.data.id}
                 />

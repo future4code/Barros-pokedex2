@@ -12,6 +12,7 @@ export function Pokedex() {
 
     console.log(pokedex);
 
+    
     let allPokes = []
       if (pokedex) {
         for (const pokemon of pokedex) {
@@ -19,6 +20,17 @@ export function Pokedex() {
           allPokes.push(data)
         }
       }
+
+    const removePoke = (id) => {
+      const pokemonIndex = pokedex.findIndex((item) => item === id)
+      const newPokemon = [...pokedex]
+
+      newPokemon.splice(pokemonIndex, 1)
+
+      setPokedex(newPokemon)
+    }
+
+
 
       console.log(allPokes);
     
@@ -47,8 +59,9 @@ export function Pokedex() {
                   <Card
                     image={pokemon && pokemon.sprites.front_default}
                     alt={pokemon && pokemon.name}
+                    name={pokemon && pokemon.name}
                     buttonName="Remover"
-                    // addPoke={() => addOnClick(pokemon.data.id)}
+                    addRmPoke={() => removePoke(pokemon.id)}
                     onClick={() => goToStats(navigate)}
                     // pokeId={pokemon && pokemon.data && pokemon.data.id}
                   />
