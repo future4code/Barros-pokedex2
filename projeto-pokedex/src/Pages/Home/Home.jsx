@@ -6,19 +6,31 @@ import UseRequestData from "../../Components/Hooks/UseRequestData";
 import { URL } from "../../Constants/BASE_URL";
 import { useState, useEffect, useContext } from "react";
 import { Context } from "../../context/Context";
+import axios from "axios";
 
 export function Home() {
   const navigate = useNavigate();
   // const [id, setId] = useState("");
   // const [dataPoke] = UseRequestData(`${URL}`);
-  const { pokedex, setPokedex } = useContext(Context);
+  const { pokedex, setPokedex} = useContext(Context);
+  const [ data, setData ] = useState()
   // const pokeId = useParams();
 
   
   const addOnClick = (id) => {
-    const newPoke = [...pokedex]
-    newPoke.push(id);
-    setPokedex(newPoke);
+
+    // const newPoke = [...pokedex]
+    axios
+      .get(URL + id)
+      .then((response) => {
+
+        setPokedex([...pokedex, response.data]);
+      })
+      .catch((error) => {
+        console.log(error.response);;
+      });
+    // newPoke.push(data);
+    // setPokedex(newPoke);
   }
 
   console.log(pokedex);

@@ -5,7 +5,7 @@ export function GlobalState(props) {
     const [ pokedex, setPokedex ] = useState([])
 
     const globalData = {
-        pokedex,setPokedex
+        pokedex, setPokedex
     }
 
     return (

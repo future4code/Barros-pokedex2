@@ -14,25 +14,25 @@ export function Pokedex() {
 
     console.log(pokedex);
 
-    useEffect(()=>{
-      if (pokedex.length<1) {
-        setAllPokes(undefined)
-      }
-      if (pokedex) {
-        const pp=[]
+    // useEffect(()=>{
+    //   if (pokedex.length<1) {
+    //     setAllPokes(undefined)
+    //   }
+    //   if (pokedex) {
+    //     const pp=[]
      
-      for (const pokemon of pokedex) {
-        axios.get(`${URL}` + pokemon)
-        .then((response) => {
-          pp.push(response.data)
-          setAllPokes(pp)
-        })
-        .catch((err) => {
-          console.log(err.response);
-        })
-      }
-    }
-    },[pokedex])
+    //   for (const pokemon of pokedex) {
+    //     axios.get(`${URL}` + pokemon)
+    //     .then((response) => {
+    //       pp.push(response.data)
+    //       setAllPokes(pp)
+    //     })
+    //     .catch((err) => {
+    //       console.log(err.response);
+    //     })
+    //   }
+    // }
+    // },[pokedex])
     
     // let allPokes = []
     // const getPokedex = () => {
@@ -46,8 +46,8 @@ export function Pokedex() {
     // }
     //  getPokedex();
     const removePoke = (id) => {
-      const pokemonIndex = pokedex.findIndex((item) => item === id)
       const newPokemon = [...pokedex]
+      const pokemonIndex = pokedex && pokedex.findIndex((item) => item.id === id)
 
       newPokemon.splice(pokemonIndex, 1)
 
@@ -78,8 +78,8 @@ export function Pokedex() {
         </header>
         <main>
           <div className="container">
-            {allPokes &&
-              allPokes.map((pokemon) => {
+            {pokedex &&
+              pokedex.map((pokemon) => {
                 return (
                   <Card
                     image={pokemon && pokemon.sprites.front_default}
