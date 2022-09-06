@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { Router } from "./Routes/Router";
 import { Context } from "./context/Context";
+import { GlobalState } from "./context/GlobalState";
 
 
 
 function App() {
 
-  const [ pokedex, setPokedex ] = useState([])
-
   return (
     <div className="App">
-      <Context.Provider value={{ pokedex, setPokedex}}>
+      <GlobalState>
         <Router />
-      </Context.Provider>
+      </GlobalState>
     </div>
   );
 }

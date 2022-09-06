@@ -11,16 +11,18 @@ export function Pokedex() {
     const { pokedex, setPokedex } = useContext(Context)
 
     console.log(pokedex);
-
     
     let allPokes = []
+    const getPokedex = () => {
+      let pokedexData = [...pokedex]
       if (pokedex) {
-        for (const pokemon of pokedex) {
+        for (const pokemon of pokedexData) {
           const [ data ] = UseRequestData(`${URL}` + pokemon);
           allPokes.push(data)
         }
       }
-
+    }
+     getPokedex();
     const removePoke = (id) => {
       const pokemonIndex = pokedex.findIndex((item) => item === id)
       const newPokemon = [...pokedex]
@@ -28,6 +30,7 @@ export function Pokedex() {
       newPokemon.splice(pokemonIndex, 1)
 
       setPokedex(newPokemon)
+      console.log(newPokemon);
     }
 
 
