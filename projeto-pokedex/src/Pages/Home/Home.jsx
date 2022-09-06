@@ -72,7 +72,7 @@ export function Home() {
                   name={pokemon.data && pokemon.data.name}
                   buttonName="Adicionar"
                   addRmPoke={() => addOnClick(pokemon.data.id)}
-                  onClick={() => goToStats(navigate)}
+                  // onClick={() => goToStats(navigate)}
                   pokeId={pokemon.data && pokemon.data.id}
                 />
               );

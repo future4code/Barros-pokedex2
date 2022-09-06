@@ -5,24 +5,46 @@ import UseRequestData from "../../Components/Hooks/UseRequestData";
 import { Context } from "../../context/Context";
 import { goBack, goToStats } from "../../Routes/Cordinator";
 import { URL } from "../../Constants/BASE_URL";
+import axios from "axios";
 
 export function Pokedex() {
     const navigate = useNavigate()
     const { pokedex, setPokedex } = useContext(Context)
+    const [ allPokes, setAllPokes ] = useState([])
 
     console.log(pokedex);
-    
-    let allPokes = []
-    const getPokedex = () => {
-      let pokedexData = [...pokedex]
+
+    useEffect(()=>{
+      if (pokedex.length<1) {
+        setAllPokes(undefined)
+      }
       if (pokedex) {
-        for (const pokemon of pokedexData) {
-          const [ data ] = UseRequestData(`${URL}` + pokemon);
-          allPokes.push(data)
-        }
+        const pp=[]
+     
+      for (const pokemon of pokedex) {
+        axios.get(`${URL}` + pokemon)
+        .then((response) => {
+          pp.push(response.data)
+          setAllPokes(pp)
+        })
+        .catch((err) => {
+          console.log(err.response);
+        })
       }
     }
-     getPokedex();
+    },[pokedex])
+    
+    // let allPokes = []
+    // const getPokedex = () => {
+    //   let pokedexData = [...pokedex]
+    //   if (pokedex) {
+    //     for (const pokemon of pokedexData) {
+    //       const [ data ] = UseRequestData(`${URL}` + pokemon);
+    //       allPokes.push(data)
+    //     }
+    //   }
+    // }
+    //  getPokedex();
     const removePoke = (id) => {
       const pokemonIndex = pokedex.findIndex((item) => item === id)
       const newPokemon = [...pokedex]
@@ -65,23 +87,10 @@ export function Pokedex() {
                     name={pokemon && pokemon.name}
                     buttonName="Remover"
                     addRmPoke={() => removePoke(pokemon.id)}
-                    onClick={() => goToStats(navigate)}
-                    // pokeId={pokemon && pokemon.data && pokemon.data.id}
+                    pokeId={pokemon && pokemon && pokemon.id}
                   />
                 );
               })}
-            {/* <Card
-              image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png"
-              onClick={() => goToStats(navigate)}
-            />
-            <Card
-              image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png"
-              onClick={() => goToStats(navigate)}
-            />
-            <Card
-              image="https://www.pngmart.com/files/2/Pikachu-PNG-Transparent-Image.png"
-              onClick={() => goToStats(navigate)}
-            /> */}
           </div>
         </main>
       </>
