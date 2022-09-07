@@ -36,6 +36,7 @@ header h1 {
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
+    
 }
 
 main { 
@@ -138,4 +139,8 @@ main {
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
+    background-color: rgb(110, 15, 15);
+    color: white;
+    border-radius: 6px;
 }
+
