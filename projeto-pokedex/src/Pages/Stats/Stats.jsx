@@ -28,25 +28,25 @@ export function Stats() {
 
   console.log("pokemonDetails",pokemonDetails)
 
-
-    //console.log(dataDetails)
-/*
-    useEffect(() => {
-      axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${params.pokeId}/`)
-      .then((response) => {
-          setPokemonDetails(response.data);
-          
+  const name = pokemonDetails && pokemonDetails.species.name
+  const photoPokeFront = pokemonDetails && pokemonDetails.sprites && pokemonDetails.sprites.versions["generation-v"]["black-white"].animated.front_default
+  const photoPokeback = pokemonDetails && pokemonDetails.sprites && pokemonDetails.sprites.versions["generation-v"]["black-white"].animated.back_default
+  const hp = pokemonDetails && pokemonDetails.stats && pokemonDetails.stats['0'].base_stat
+  const attack = pokemonDetails && pokemonDetails.stats && pokemonDetails.stats['1'].base_stat
+  const defense = pokemonDetails && pokemonDetails.stats && pokemonDetails.stats['2'].base_stat
+  const specialAtack = pokemonDetails && pokemonDetails.stats && pokemonDetails.stats['3'].base_stat
+  const specialDefense = pokemonDetails && pokemonDetails.stats && pokemonDetails.stats['4'].base_stat
+  const speed = pokemonDetails && pokemonDetails.stats && pokemonDetails.stats['5'].base_stat
+  const typePoke = pokemonDetails && pokemonDetails.types && pokemonDetails.types.map((tipo) => {
+      return(
+          <span>{tipo.type.name}</span>
+          )
       })
-      .catch((error) => {
-          console.log(error);
-          
-      });
-    }, [ `https://pokeapi.co/api/v2/pokemon/${params.pokeId}/`]);
-
-    */
-
-    
+  const moves = pokemonDetails && pokemonDetails.moves && pokemonDetails.moves.map((move)=>{
+    return(
+      <p>{move.move.name}</p>
+    )
+  })
     return (
       <>
         <header>
@@ -76,37 +76,35 @@ export function Stats() {
             <section className="images">
               <div>
                 <img
-                  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-                  alt="pikachu front"
+                  src={photoPokeFront}
+                  alt="pokemon de frente"
                 />
               </div>
               <div>
                 <img
-                  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png"
-                  alt="pikachu back"
+                  src={photoPokeback}
+                  alt="pokemon de costas"
                 />
               </div>
             </section>
             <section className="stats">
-              <p>HP:</p>
-              <p>Attack:</p>
-              <p>Defense:</p>
-              <p>Special-atack:</p>
-              <p>Special-defense:</p>
-              <p>Speed</p>
+              <h1>{name}</h1>
+              <p>HP: {hp}</p>
+              <p>Attack: {attack}</p>
+              <p>Defense: {defense}</p>
+              <p>Special-atack: {specialAtack}</p>
+              <p>Special-defense: {specialDefense}</p>
+              <p>Speed {speed}</p>
+              
             </section>
             <section className="detail">
               <div className="type">
-                <p>type 1</p>
-                <p>type 2</p>
+                <p>Type: {typePoke}</p>
               </div>
               <div className="move">
                 <h5>Moves</h5>
-                <ul>
+                <p>{moves}</p>
                 
-                  <li>move name 2</li>
-                  <li>move name 3</li>
-                </ul>
               </div>
             </section>
           </div>
