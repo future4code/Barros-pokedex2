@@ -53,9 +53,14 @@ export function Pokedex() {
 
       setPokedex(newPokemon)
       console.log(newPokemon);
+
+
+      // TENTANDO REMOVER DA HOME
+      // const newPokemonList = newPokemon.filter((pokemon) => {
+      //   return pokemon.name !== id.name
+      // })
+      // setPokedex(newPokemonList)
     }
-
-
 
       console.log(allPokes);
     
@@ -88,8 +93,10 @@ export function Pokedex() {
                     buttonName="Remover"
                     addRmPoke={() => removePoke(pokemon.id)}
                     pokeId={pokemon && pokemon && pokemon.id}
-                  />
+                    />
+                  
                 );
+
               })}
           </div>
         </main>
