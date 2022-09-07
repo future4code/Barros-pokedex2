@@ -18,8 +18,9 @@ export function Card(props) {
           alt={props.alt}
         />
       </div>
+      <p>{props.name}</p>
       <div class="button">
-        <button>Adicionar</button>
+        <button onClick={props.addRmPoke}>{props.buttonName}</button>
         <button onClick={()=>(goToStats(props.pokeId))}>Ver Detalhes</button>
       </div>
     </div>

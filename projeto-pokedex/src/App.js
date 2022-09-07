@@ -1,6 +1,7 @@
-import { Home } from "./Pages/Home/Home";
-import { Stats } from "./Pages/Stats/Stats";
+import { useState } from "react";
 import { Router } from "./Routes/Router";
+import { Context } from "./context/Context";
+import { GlobalState } from "./context/GlobalState";
 
 
 
@@ -8,7 +9,9 @@ function App() {
 
   return (
     <div className="App">
-         <Router />
+      <GlobalState>
+        <Router />
+      </GlobalState>
     </div>
   );
 }
