@@ -1,11 +1,16 @@
 # POKEDEX
 
+Neste projeto, desenvolvemos uma Pokedéx, em que deveríamos pegar uma lista de pokemons a partir da API PokéAPI. Dentre os requisitos do projeto, foram criadas três páginas, Home: com os pokemons alimentados pela API, onde tem a possibilidade de ver os detalhes de cada um e adicionar à pokedex. Detalhes: Apresenta imagens do pokemon, tipo, habilidades e ataques. Pokedex: Contém os pokemons inclusos na pokedex, podendo remover cada um deles.
+
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Jéssica Oliveira de Lima
+- Leonardo Barros de Souza
+- Vitória
 
 Link do Surge: www.link.com.br
+
+Tecnoligias utilizadas:
+useContex, useNavigate, useState, useEffect, useParams, axios
 
 O que funciona:
 - Item 1
