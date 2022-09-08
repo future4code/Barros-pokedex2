@@ -7,18 +7,10 @@ Nome dos integrantes:
 - Leonardo Barros de Souza
 - Vitória
 
-Link do Surge: www.link.com.br
+Link do Surge: http://dry-teaching.surge.sh/
 
 Tecnoligias utilizadas:
 useContex, useNavigate, useState, useEffect, useParams, axios
-
-O que funciona:
-- Item 1
-- Item 2
-
-O que não funciona: 
-- Item 3
-- Item 4
 
 Imagens do site:
 ![Captura de tela de 2022-09-08 20-34-18](https://user-images.githubusercontent.com/102320940/189243653-a550234a-1ee8-45a8-b839-d0dc6e253ad3.png)
