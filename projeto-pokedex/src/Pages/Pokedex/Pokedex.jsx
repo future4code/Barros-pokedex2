@@ -1,68 +1,53 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "../../Components/Card/Card";
-import UseRequestData from "../../Components/Hooks/UseRequestData";
 import { Context } from "../../context/Context";
-import { goBack, goToStats } from "../../Routes/Cordinator";
-import { URL } from "../../Constants/BASE_URL";
-import axios from "axios";
+import { goBack } from "../../Routes/Cordinator";
 
 export function Pokedex() {
-    const navigate = useNavigate()
-    const { pokedex, setPokedex } = useContext(Context)
-    const [ allPokes, setAllPokes ] = useState([])
+  const navigate = useNavigate();
+  const { pokedex, setPokedex } = useContext(Context);
 
-    console.log(pokedex);
+  const removePoke = (id) => {
+    const newPokemon = [...pokedex];
+    const pokemonIndex = pokedex && pokedex.findIndex((item) => item.id === id);
 
-    const removePoke = (id) => {
-      const newPokemon = [...pokedex]
-      const pokemonIndex = pokedex && pokedex.findIndex((item) => item.id === id)
+    newPokemon.splice(pokemonIndex, 1);
 
-      newPokemon.splice(pokemonIndex, 1)
+    setPokedex(newPokemon);
+  };
 
-      setPokedex(newPokemon)
-      console.log(newPokemon);
-
-    }
-
-      console.log(allPokes);
-    
-    return (
-      <>
-        <header>
-          <div className="wrapper">
-            <div>
-              <button
-                className="button-header"
-                onClick={() => goBack(navigate)}
-              >
-                Voltar
-              </button>
-            </div>
-            <div>
-              <h1>Pokedex</h1>
-            </div>
+  return (
+    <>
+      <header>
+        <div className="wrapper">
+          <div>
+            <button className="button-header" onClick={() => goBack(navigate)}>
+              Voltar
+            </button>
           </div>
-        </header>
-        <main>
-          <div className="container">
-            {pokedex &&
-              pokedex.map((pokemon) => {
-                return (
-                  <Card
-                    image={pokemon && pokemon.sprites.front_default}
-                    alt={pokemon && pokemon.name}
-                    name={pokemon && pokemon.name}
-                    buttonName="Remover"
-                    addRmPoke={() => removePoke(pokemon.id)}
-                    pokeId={pokemon && pokemon && pokemon.id}
-                    />
-                  
-                );
-
-              })}
+          <div>
+            <h1>Pokedex</h1>
           </div>
-        </main>
-      </>
-    );
+        </div>
+      </header>
+      <main>
+        <div className="container">
+          {pokedex &&
+            pokedex.map((pokemon) => {
+              return (
+                <Card
+                  image={pokemon && pokemon.sprites.front_default}
+                  alt={pokemon && pokemon.name}
+                  name={pokemon && pokemon.name}
+                  buttonName="Remover"
+                  addRmPoke={() => removePoke(pokemon.id)}
+                  pokeId={pokemon && pokemon && pokemon.id}
+                />
+              );
+            })}
+        </div>
+      </main>
+    </>
+  );
 }

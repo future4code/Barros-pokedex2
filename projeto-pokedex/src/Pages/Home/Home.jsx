@@ -1,69 +1,51 @@
 import { Card } from "../../Components/Card/Card";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
-import { goToPokedex, goToStats } from "../../Routes/Cordinator";
+import { goToPokedex} from "../../Routes/Cordinator";
 import UseRequestData from "../../Components/Hooks/UseRequestData";
 import { URL } from "../../Constants/BASE_URL";
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { Context } from "../../context/Context";
 import axios from "axios";
 
 export function Home() {
   const navigate = useNavigate();
-  // const [id, setId] = useState("");
-  // const [dataPoke] = UseRequestData(`${URL}`);
-  const { pokedex, setPokedex} = useContext(Context);
-  const [ data, setData ] = useState()
-  // const pokeId = useParams();
 
-  
+  const { pokedex, setPokedex } = useContext(Context);
+
   const addOnClick = (id) => {
-
-    // const newPoke = [...pokedex]
     axios
       .get(URL + id)
       .then((response) => {
-
         setPokedex([...pokedex, response.data]);
       })
       .catch((error) => {
-        console.log(error.response);;
+        console.log(error.response);
       });
-    // newPoke.push(data);
-    // setPokedex(newPoke);
-  }
+  };
 
-     const removePoke = (id) => {
-       const newPokemon = [...pokedex];
-       const pokemonIndex =
-         pokedex && pokedex.findIndex((item) => item.id === id);
+  const removePoke = (id) => {
+    const newPokemon = [...pokedex];
+    const pokemonIndex = pokedex && pokedex.findIndex((item) => item.id === id);
 
-       newPokemon.splice(pokemonIndex, 1);
+    newPokemon.splice(pokemonIndex, 1);
 
-       setPokedex(newPokemon);
-       console.log(newPokemon);
-     };
+    setPokedex(newPokemon);
+  };
 
-  // console.log(pokedex);
-  
-  
-  const pokedexId = pokedex && pokedex.map((element) => {
-    return element.id;
-  })
-  console.log(pokedexId);
-  
+  const pokedexId =
+    pokedex &&
+    pokedex.map((element) => {
+      return element.id;
+    });
+
   let allPokes = [];
 
   const getPokemons = () => {
     for (let id = 1; id < 21; id++) {
       const [data] = UseRequestData(`${URL}` + id);
 
-      // console.log(data);
-      // console.log(data);
-
       allPokes.push({ data });
-
-      // console.log(allPokes);
     }
     return allPokes;
   };
@@ -97,9 +79,16 @@ export function Home() {
                   image={pokemon.data && pokemon.data.sprites.front_default}
                   alt={pokemon.data && pokemon.data.name}
                   name={pokemon.data && pokemon.data.name}
-                  buttonName={pokedexId.includes(pokemon.data && pokemon.data.id) ? "Remover" : "Adicionar"}
-                  addRmPoke={pokedexId.includes(pokemon.data && pokemon.data.id) ? () => removePoke(pokemon.data.id) : () => addOnClick(pokemon.data.id)}
-                  // onClick={() => goToStats(navigate)}
+                  buttonName={
+                    pokedexId.includes(pokemon.data && pokemon.data.id)
+                      ? "Remover"
+                      : "Adicionar"
+                  }
+                  addRmPoke={
+                    pokedexId.includes(pokemon.data && pokemon.data.id)
+                      ? () => removePoke(pokemon.data.id)
+                      : () => addOnClick(pokemon.data.id)
+                  }
                   pokeId={pokemon.data && pokemon.data.id}
                 />
               );
