@@ -14,37 +14,6 @@ export function Pokedex() {
 
     console.log(pokedex);
 
-    // useEffect(()=>{
-    //   if (pokedex.length<1) {
-    //     setAllPokes(undefined)
-    //   }
-    //   if (pokedex) {
-    //     const pp=[]
-     
-    //   for (const pokemon of pokedex) {
-    //     axios.get(`${URL}` + pokemon)
-    //     .then((response) => {
-    //       pp.push(response.data)
-    //       setAllPokes(pp)
-    //     })
-    //     .catch((err) => {
-    //       console.log(err.response);
-    //     })
-    //   }
-    // }
-    // },[pokedex])
-    
-    // let allPokes = []
-    // const getPokedex = () => {
-    //   let pokedexData = [...pokedex]
-    //   if (pokedex) {
-    //     for (const pokemon of pokedexData) {
-    //       const [ data ] = UseRequestData(`${URL}` + pokemon);
-    //       allPokes.push(data)
-    //     }
-    //   }
-    // }
-    //  getPokedex();
     const removePoke = (id) => {
       const newPokemon = [...pokedex]
       const pokemonIndex = pokedex && pokedex.findIndex((item) => item.id === id)
@@ -54,12 +23,6 @@ export function Pokedex() {
       setPokedex(newPokemon)
       console.log(newPokemon);
 
-
-      // TENTANDO REMOVER DA HOME
-      // const newPokemonList = newPokemon.filter((pokemon) => {
-      //   return pokemon.name !== id.name
-      // })
-      // setPokedex(newPokemonList)
     }
 
       console.log(allPokes);

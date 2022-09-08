@@ -33,9 +33,24 @@ export function Home() {
     // setPokedex(newPoke);
   }
 
-  console.log(pokedex);
+     const removePoke = (id) => {
+       const newPokemon = [...pokedex];
+       const pokemonIndex =
+         pokedex && pokedex.findIndex((item) => item.id === id);
+
+       newPokemon.splice(pokemonIndex, 1);
+
+       setPokedex(newPokemon);
+       console.log(newPokemon);
+     };
+
+  // console.log(pokedex);
   
   
+  const pokedexId = pokedex && pokedex.map((element) => {
+    return element.id;
+  })
+  console.log(pokedexId);
   
   let allPokes = [];
 
@@ -82,8 +97,8 @@ export function Home() {
                   image={pokemon.data && pokemon.data.sprites.front_default}
                   alt={pokemon.data && pokemon.data.name}
                   name={pokemon.data && pokemon.data.name}
-                  buttonName="Adicionar"
-                  addRmPoke={() => addOnClick(pokemon.data.id)}
+                  buttonName={pokedexId.includes(pokemon.data && pokemon.data.id) ? "Remover" : "Adicionar"}
+                  addRmPoke={pokedexId.includes(pokemon.data && pokemon.data.id) ? () => removePoke(pokemon.data.id) : () => addOnClick(pokemon.data.id)}
                   // onClick={() => goToStats(navigate)}
                   pokeId={pokemon.data && pokemon.data.id}
                 />
