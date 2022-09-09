@@ -5,7 +5,7 @@ Neste projeto, desenvolvemos uma Pokedéx, em que deveríamos pegar uma lista de
 Nome dos integrantes: 
 - Jéssica Oliveira de Lima
 - Leonardo Barros de Souza
-- Vitória
+- Vitória Do Nascimento Galdino
 
 Link do Surge: http://dry-teaching.surge.sh/
 
