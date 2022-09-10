@@ -11,7 +11,7 @@ export function Card(props) {
   };
 
   return (
-    <div class="card">
+    <div className="card">
       <div>
         <img
           src={props.image}
@@ -19,7 +19,7 @@ export function Card(props) {
         />
       </div>
       <p>{props.name}</p>
-      <div class="button">
+      <div className="button">
         <button onClick={props.addRmPoke}>{props.buttonName}</button>
         <button onClick={()=>(goToStats(props.pokeId))}>Ver Detalhes</button>
       </div>
